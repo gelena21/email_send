@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<div class="header mx-auto text-center mb-4">
+    <h5 class="display-4">{{ title }}</h5>
+</div>
+<div class="col-12 mb-5">
+    <a class="btn btn-outline-primary"
+       href="{% url 'main:client_add' %}">Добавить клиента</a>
+</div>
+<div class="col-12">
+    <div class="row">
+        {% for object in object_list %}
+            <div class="col-12 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <p>{{ object.email }}</p>
+                        {% if object.comment %}
+                            <p>{{ object.comment }}</p>
+                        {% endif %}
+
+                        <a href="{% url 'main:client_edit' object.pk %}"
+                           class="btn btn-sm btn-outline-secondary">Редактировать</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

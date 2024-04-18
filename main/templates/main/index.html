@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content%}
+
+<h2 class="mb-4">Статистика сервиса</h2>
+
+<div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
+    <div class="col-lg-6 px-0">
+        <h1 class="display-4 fst-italic">Рассылки</h1>
+        <p class="lead my-3">Создано рассылок в сервисе: <b>{{ mailings_count| default:0 }}</b></p>
+        <p class="lead my-3">Активные рассылки: <b>{{ active_mailings_count | default:0 }}</b></p>
+    </div>
+</div>
+
+
+<div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
+    <div class="col-lg-6 px-0">
+        <h1 class="display-4 fst-italic">Клиенты</h1>
+        <p class="lead my-3">Уникальных клиентов: <b>{{ clients_count | default:0 }}</b></p>
+    </div>
+</div>
+
+<h2 class="mb-4">Статьи блога</h2>

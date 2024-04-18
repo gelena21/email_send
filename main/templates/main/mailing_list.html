@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+
+<a href="{% url 'main:mailing_create' %}" type="button" class="btn btn-dark mb-4">
+    Создать рассылку
+</a>
+
+
+{% for object in object_list %}
+{% if object.user == user or user.is_staff %}
+<div class="card mb-4">
+    <div class="card-header">
+        Рассылка "<b>{{ object.title }}</b>"
+    </div>
+    <div class="card-body">
+
+        <ul>
+            <li>Даты: <b>{{ object.start_date }}</b> по <b>{{ object.end_date }}</b></li>
+            <li>Периодичность: <b>{{ object.get_periodicity_display }}</b></li>
+            {% if object.is_active %}
+            <li>Статус: <b>действующая</b></li>
+            {% else %}
+            <li>Статус: <b>отменена</b></li>
+            {% endif %}
+            <li>Пользователь: <b>{{ object.user }}</b></li>
+        </ul>
+
+
+        <a href="{% url 'main:mailing_detail' object.pk %}" class="btn btn-dark">Поодробнее</a>
+    </div>
+</div>
+{% endif %}
+
+{% endfor %}
+
+{% endblock %}
